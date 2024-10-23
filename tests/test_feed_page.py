@@ -6,7 +6,7 @@ from conftest import *
 import allure
 
 
-class TestFeedPage:
+class TestOrderFeedPage:
 
     @allure.title('Проверка открытия всплывающего окна с деталями при клике на заказ')
     def test_displaying_modal_order_details_success(self, driver):
