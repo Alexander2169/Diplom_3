@@ -3,7 +3,7 @@ from locators import FeedPageLocators
 import allure
 
 
-class FeedPage(BasePage): # Класс для работы со страницей Ленты заказов
+class OrderFeedPage(BasePage): # Класс для работы со страницей Ленты заказов
 
     @allure.title('Получить текст заголовка раздела заказов')
     def get_text_on_title_of_orders_list(self):

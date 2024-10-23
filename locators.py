@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-class AccountPageLocators:
+class AccountPageLocators: # Локаторы страницы аккаунта
     # Раздел "Профиль"
     PROFILE_LINK = (By.XPATH, '//a[@href = "/account/profile"]')
 
@@ -17,7 +17,7 @@ class AccountPageLocators:
     SECTION_DESCRIPTION = (By.XPATH, '//p[contains(@class, "Account_text")]')
 
 
-class FeedPageLocators:
+class OrderFeedPageLocators: # Локаторы страницы ленты заказов
     # Раздел заказов
     ORDERS_LIST_SECTION = (By.XPATH, '//ul[contains(@class, "OrderFeed_list")]')
 
@@ -49,7 +49,7 @@ class FeedPageLocators:
     ORDER_CARD_IN_FEED_WITH_SUBSTITUTIONS = (By.XPATH, './/*[text()="{order_id}"]')
 
 
-class MainPageLocators:
+class BasePageLocators: # Локаторы базовой страницы
     # Кнопка "Войти в аккаунт" на главной
     LOGIN_BUTTON_ON_MAIN = (By.XPATH, './/button[text() = "Войти в аккаунт"]')
 
@@ -114,7 +114,7 @@ class MainPageLocators:
     CLOSE_CONFIRMATION_BUTTON = (By.XPATH, '//section[contains(@class, "Modal_modal_opened")]//button[contains(@class, "close")]')
 
 
-class OrderHistoryPageLocators:
+class OrderHistoryPageLocators: # Локаторы страницы истории заказов
     # Карточка заказа в истории заказов
     ORDER_CARD = (By.XPATH, '//*[contains(@class, "OrderHistory_listItem")]')
 
@@ -125,7 +125,7 @@ class OrderHistoryPageLocators:
     ORDER_CARD_ID = (By.XPATH, '(//div[contains(@class, "OrderHistory_textBox")]/p[contains(@class, "text_type_digits-default")])[1]')
 
 
-class PasswordRecoveryLocators:
+class PasswordRecoveryLocators: # Локаторы восстановления пароля
     # Кнопка "Восстановить пароль" на экране входа
     FORGOT_PASSWORD_BUTTON = (By.XPATH, '//a[text() = "Восстановить пароль"]')
 
