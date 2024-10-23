@@ -1,7 +1,7 @@
-from pages.feed_page import FeedPage
-from pages.main_page import MainPage
+from pages.order_feed_page import OrderFeedPage
+from pages.home_page import HomePage
 from pages.order_history_page import OrderHistoryPage
-from pages.account_page import AccountPage
+from pages.personal_account_page import PersonalAccountPage
 from conftest import *
 import allure
 
@@ -10,11 +10,11 @@ class TestOrderFeedPage:
 
     @allure.title('Проверка открытия всплывающего окна с деталями при клике на заказ')
     def test_displaying_modal_order_details_success(self, driver):
-        main_page = MainPage(driver)
-        feed_page = FeedPage(driver)
-        main_page.click_header_feed_button()
-        feed_page.click_on_order_card()
-        assert 'бургер' in feed_page.get_text_on_title_of_modal_order()
+        home_page = HomePage(driver)
+        order_feed_page = OrderFeedPage(driver)
+        home_page.click_header_feed_button()
+        order_feed_page.click_on_order_card()
+        assert 'метеоритный' in order_feed_page.get_text_on_title_of_modal_order()
 
     @allure.title('Проверка отображения существующего заказа из истории пользователя в ленте')
     def test_displaying_in_feed_new_order_from_history_success(self, driver, create_user_and_order_and_delete,
