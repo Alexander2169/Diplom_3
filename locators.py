@@ -78,7 +78,7 @@ class BasePageLocators: # Локаторы базовой страницы
     FILLINGS_SECTION_TITLE = (By.XPATH, '//span[text() = "Начинки"]')
 
     # Кнопка "Лента заказов"
-    ORDER_FEED_BUTTON_IN_HEADER = (By.XPATH, '(.//p[@class="AppHeader_header__linkText__3q_va ml-2"]')
+    ORDER_FEED_BUTTON_IN_HEADER = (By.XPATH, '//p[text()="Лента Заказов"]/parent::a/parent::li')
 
     # Ингредиент
     FIRST_INGREDIENT = (By.XPATH, '(.//p[@class="BurgerIngredient_ingredient__text__yp3dH"])[1]')
