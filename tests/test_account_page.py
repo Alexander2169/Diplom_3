@@ -13,7 +13,7 @@ class TestPersonalAccountPage: # Личный кабинет
         # Переход в личный кабинет
         home_page.click_on_personal_account_in_header()
         personal_account_page.wait_visibility_of_description()
-        assert personal_account_page.check_displaying_of_description()+
+        assert personal_account_page.check_displaying_of_description()
 
     @allure.title('Проверка перехода в раздел «История заказов»')
     def test_go_to_order_history_section(self, driver, set_user_tokens, create_user_and_order_and_delete):
