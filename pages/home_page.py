@@ -65,7 +65,7 @@ class HomePage(BasePage): # Класс для работы с главной с�
         return self.get_text_on_element(BasePageLocators.INGREDIENT_COUNT)
 
     @allure.title('Кликнуть на кнопку создания заказа')
-    def click_on_button_make_order(self):
+    def click_on_button_make_order(self):+
         self.click_on_element(BasePageLocators.MAKE_ORDER_BUTTON_IN_CONSTRUCTOR)
 
     @allure.title('Проверить отображение окна о создании заказа')

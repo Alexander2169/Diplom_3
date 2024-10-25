@@ -7,7 +7,7 @@ import allure
 class BasePage: # Базовый класс для страниц, содержащий общие методы для взаимодействия с элементами
 
     def __init__(self, driver):
-        self.driver =
+        self.driver = driver
 
     @allure.title('Подождать прогрузки элемента')
     def wait_visibility_of_element(self, locator):
