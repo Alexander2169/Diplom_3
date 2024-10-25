@@ -57,7 +57,7 @@ class BasePageLocators: # Локаторы базовой страницы
     PERSONAL_ACCOUNT_BUTTON = (By.XPATH, '//p[text()="Личный Кабинет"]/parent::a')
 
     # Кнопка "Оформить заказ"
-    MAKE_ORDER_BUTTON = (By.XPATH, '//buttonn[text()="Оформить заказ"]')
+    MAKE_ORDER_BUTTON = (By.XPATH, '//button[text()="Оформить заказ"]')
 
     # Кнопка "Конструктор" в шапке сайта
     CONSTRUCTOR_HEADER_BUTTON = (By.XPATH, '//p[text() = "Конструктор"]')
