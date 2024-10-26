@@ -1,13 +1,12 @@
 from faker import Faker
 
-# Инициализация генератора случайных данных
 fake = Faker()
-fakeRU = Faker(locale='ru_RU')  # Генератор для русскоязычных данных
+fakeEN = Faker(locale='en_US')  # Генератор данных на английском языке
 
 
 def create_random_email(): # Генерирует случайный адрес электронной почты
 
-    email = fake.free_email()  # Генерация случайного адреса электронной почты
+    email = fake.free_email()
     return email
 
 
@@ -17,7 +16,7 @@ def create_random_password(length=10): # Генерирует случайный
     return password
 
 
-def create_random_name(): # Генерирует случайное имя пользователя на русском языке
+def create_random_name(): # Генерирует случайное имя пользователя
 
-    username = fakeRU.first_name()  # Генерация случайного имени
+    username = fakeEN.first_name()
     return username
