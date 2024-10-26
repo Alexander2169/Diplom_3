@@ -3,7 +3,7 @@ from locators import *
 from config import *
 import allure
 
-class PasswordRecoveryPage(BasePage):
+class ForgotPasswordPage(BasePage):
 
     @allure.step('Открываем страницу Восстановления пароля')
     def navigate_to_password_recovery(self):
@@ -19,12 +19,4 @@ class PasswordRecoveryPage(BasePage):
         self.input_text(PasswordRecoveryLocators.EMAIL_FIELD, email)
         self.click_element(PasswordRecoveryLocators.RESTORE_PASSWORD_BUTTON)
 
-    @allure.step('Проверяем открытие страницы Сброса пароля')
-    def verify_password_reset_page(self):
-        return self.verify_page_opened(Urls.PASSWORD_RESET_URL, ResetPasswordPageLocators.SAVE_BUTTON)
 
-    @allure.step('Кликаем по кнопке "глаз" и получаем атрибут поля Пароль')
-    def reveal_password_and_get_attribute(self):
-        self.is_element_invisible(ResetPasswordPageLocators.LOADING_ICON)
-        self.click_element(ResetPasswordPageLocators.EYE_BUTTON)
-        return self.get_element_attribute(ResetPasswordPageLocators.PASSWORD_DIV, 'class')
