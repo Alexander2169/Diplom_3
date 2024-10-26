@@ -30,7 +30,8 @@ class BurgerBuilderPage(BasePage): # Страница конструктора
     @allure.step('Проверка видимости модального окна с информацией об ингредиенте')
     def verify_ingredient_detail_modal(self, ingredient_id):
         return (self.is_element_visible(BurgerConstructorLocators.INGREDIENT_INFO_HEADER)
-                and self.verify_page_opened(Urls.INGREDIENT_DETAIL_URL.format(id=ingredient_id), BurgerConstructorLocators.INGREDIENT_INFO_HEADER))
+                and self.verify_page_opened(Urls.INGREDIENT_DETAIL_URL.format(id=ingredient_id),
+                                            BurgerConstructorLocators.INGREDIENT_INFO_HEADER))
 
     @allure.step('Закрытие модального окна с информацией об ингредиенте')
     def close_ingredient_detail_modal(self):
