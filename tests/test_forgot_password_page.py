@@ -1,9 +1,9 @@
 from pages.login_page import LoginPage
+from pages.base_page import BasePage
 from pages.forgot_password_page import ForgotPasswordPage
 from pages.reset_password_page import ResetPasswordPage
 from helpers import generate_user_info
 import allure
-
 
 class TestForgotPasswordPage:
 
