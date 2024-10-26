@@ -30,23 +30,7 @@ def driver(request):
 def generate_user_credentials():
     return create_random_email(), create_random_password(), create_random_name()
 
-@pytest.fixture
-@allure.title('Создает пользователя с рандомными кредами и удаляет его из базы после теста')
-def create_new_user_and_delete():
-    payload_cred = {
-        'email': create_random_email(),
-        'password': create_random_password(),
-        'name': create_random_name()
-    }
-    try:
-        response = requests.post(Urls.USER_REGISTER, data=payload_cred)
-        response.raise_for_status()
-        response_body = response.json()
-        yield payload_cred, response_body
-    finally:
-        access_token = response_body.get('accessToken')
-        if access_token:
-            requests.delete(Urls.USER_DELETE, headers={'Authorization': access_token})
+
 
 @pytest.fixture
 @allure.title('Создает пользователя и заказ для его аккаунта')
@@ -59,6 +43,22 @@ def create_user_and_order_and_delete(create_new_user_and_delete):
     ]}
     response_body = requests.post(Urls.ORDER_CREATE, data=payload, headers=headers)
     yield access_token, response_body
+    requests.delete(Urls.USER_DELETE, headers={'Authorization': access_token})
+
+@pytest.fixture
+@allure.title('Фикстура создает пользователя с рандомными кредами и удаляет его из базы после теста')
+def create_new_user_and_delete():
+    payload_cred = {
+        'email': create_random_email(),
+        'password': create_random_password(),
+        'name': create_random_name()
+    }
+    response = requests.post(Urls.USER_REGISTER, data=payload_cred)
+    response_body = response.json()
+
+    yield payload_cred, response_body
+
+    access_token = response_body['accessToken']
     requests.delete(Urls.USER_DELETE, headers={'Authorization': access_token})
 
 @pytest.fixture
