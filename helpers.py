@@ -1,7 +1,7 @@
 from faker import Faker
 
 fake = Faker()
-fakeEN = Faker(locale='en_US')  # Генератор данных на английском языке
+fakeEN = Faker("en_US")  # Генератор данных на английском языке
 
 
 def create_random_email(): # Генерирует случайный адрес электронной почты
@@ -10,9 +10,9 @@ def create_random_email(): # Генерирует случайный адрес 
     return email
 
 
-def create_random_password(length=10): # Генерирует случайный пароль, содержащий буквы, цифры и специальные символы.
+def create_random_password(): # Генерирует случайный пароль
 
-    password = fake.password(length=length, special_chars=True, digits=True, upper_case=True, lower_case=True)
+    password = fake.password()
     return password
 
 

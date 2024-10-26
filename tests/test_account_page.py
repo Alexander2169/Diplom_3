@@ -21,7 +21,7 @@ class TestPersonalAccountPage: # Личный кабинет
         personal_account_page = PersonalAccountPage(driver)
         order_history_page = OrderHistoryPage(driver)
 
-        # Переход в разднл "История заказов"
+        # Переход в раздел "История заказов"
         home_page.click_on_personal_account_in_header()
         personal_account_page.wait_visibility_of_description()
         personal_account_page.click_on_order_history_button()
