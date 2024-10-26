@@ -1,8 +1,8 @@
 from base_page import BasePage
-from locators import NavigationHeaderLocators
+from locators import *
 import allure
 
-class HeaderPage(BasePage):
+class HeaderPage(BasePage): # Заголовок страницы
 
     @allure.step('Нажимаем на ссылку "Конструктор"')
     def click_on_constructor_link(self):
