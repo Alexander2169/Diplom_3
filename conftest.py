@@ -46,7 +46,7 @@ def create_user_and_order_and_delete(create_new_user_and_delete):
     requests.delete(Urls.USER_DELETE, headers={'Authorization': access_token})
 
 @pytest.fixture
-@allure.title('Фикстура создает пользователя с рандомными кредами и удаляет его из базы после теста')
+@allure.title('Фикстура создает пользователя с рандомными учетными данными и удаляет его из базы после теста')
 def create_new_user_and_delete():
     payload_cred = {
         'email': create_random_email(),
