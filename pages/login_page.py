@@ -4,7 +4,7 @@ from config import Urls
 import allure
 
 
-class LoginPage(BasePage):
+class LoginPage(BasePage): # Войти на страницу
 
     @allure.step('Открываем страницу Авторизации')
     def open_login_page(self):
