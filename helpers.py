@@ -57,7 +57,7 @@ def fetch_random_ingredient_id():
 
 @allure.step('Определение случайного id булки для заказа')
 def fetch_random_bun_id():
-    return random.choice(TestData.BUN_IDS)
+    return random.choice(BunIds.BUN_IDS)
 
 
 @allure.step('Создание заказа через API')

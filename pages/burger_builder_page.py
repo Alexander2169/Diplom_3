@@ -65,4 +65,20 @@ class BurgerBuilderPage(BasePage): # Страница конструктора
         else:
             return False
 
+    @allure.step('Возвращает ID заказа')
+    def get_order_id(self):
+        order_id_element = self.driver.find_element(*BurgerConstructorLocators.SUCCESS_ORDER_ID)
+        return order_id_element.text
+
+    @allure.step('Проверка отображения успешного окна с номером заказа')
+    def verify_success_screen_with_order_number(self):
+        try:
+            order_id_element = self.driver.find_element(*BurgerConstructorLocators.SUCCESS_ORDER_ID)
+            success_order_id = order_id_element.text
+            assert success_order_id is not None and success_order_id != "", "ID заказа не найден"
+            return True  # Возвращаем True, если ID заказа найден
+        except NoSuchElementException:
+            return False  # Возвращаем False, если элемент не найден
+
+
 
