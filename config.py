@@ -54,3 +54,7 @@ class Endpoints:
 
     # Эндпоинт для создания заказа
     ORDER_CREATION = '/api/orders'
+
+class BunIds:
+
+    BUN_IDS = ['61c0c5a71d1f82001bdaaa6d', '61c0c5a71d1f82001bdaaa6c']
