@@ -4,7 +4,7 @@ from conftest import *
 import allure
 
 
-class TestMainPage:
+class TestMainPage: # Проверка основного функционала
     @allure.title('Проверка перехода по клику на "Конструктор"')
     def test_navigate_to_constructor_success(self, driver):
         home_page = HomePage(driver)
