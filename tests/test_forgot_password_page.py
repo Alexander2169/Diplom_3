@@ -1,9 +1,10 @@
+import helpers
 from pages.login_page import LoginPage
-from pages.base_page import BasePage
 from pages.forgot_password_page import ForgotPasswordPage
 from pages.reset_password_page import ResetPasswordPage
-from helpers import generate_user_info
+from conftest import *
 import allure
+
 
 class TestForgotPasswordPage:
 
@@ -12,9 +13,13 @@ class TestForgotPasswordPage:
         login_page = LoginPage(driver)
         forgot_password_page = ForgotPasswordPage(driver)
 
+        # Открываем страницу авторизации
         login_page.open_login_page()
+
+        # Переходим на страницу восстановления пароля
         login_page.click_on_restore_password_link()
 
+        # Проверяем, что страница восстановления пароля открыта
         assert forgot_password_page.verify_password_recovery_page()
 
     @allure.title('Проверка ввода почты и работа кнопки "Восстановить" на странице Восстановления пароля')
@@ -22,9 +27,13 @@ class TestForgotPasswordPage:
         forgot_password_page = ForgotPasswordPage(driver)
         reset_password_page = ResetPasswordPage(driver)
 
+        # Открываем страницу восстановления пароля
         forgot_password_page.navigate_to_password_recovery()
-        email = generate_user_info()['email']
+
+        # Генерируем случайный email и отправляем его для восстановления
+        email = helpers.generate_user_info()['email']
         forgot_password_page.submit_email_for_recovery(email)
 
+        # Проверяем, что страница сброса пароля открыта
         assert reset_password_page.verify_password_reset_page()
 

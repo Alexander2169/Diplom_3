@@ -2,6 +2,7 @@ from pages.header_page import HeaderPage
 from pages.burger_builder_page import BurgerBuilderPage  # Исправлено на BurgerBuilderPage
 from pages.order_page import OrderPage  # Исправлено на OrderPage
 import allure
+from conftest import *
 
 
 class TestHeaderPage:
