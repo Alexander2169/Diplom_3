@@ -2,9 +2,9 @@ from pages.burger_builder_page import BurgerBuilderPage
 from helpers import *
 from conftest import *
 import allure
-from time import sleep  # Импортируем sleep для ожидания
+from time import sleep
 
-class TestBurgerBuilderPage:
+class TestBurgerBuilderPage: # Страница конструктора бургеров
 
     @allure.title('Проверка открытия всплывающего окна с деталями, если кликнуть на ингредиент')
     def test_open_modal_window_on_ingredient_click(self, driver):
@@ -33,8 +33,7 @@ class TestBurgerBuilderPage:
         before_ingredient_counter = burger_builder_page.get_ingredient_counter_value(ingredient_id)
         burger_builder_page.move_ingredient_to_basket(ingredient_id)
 
-        # Добавляем ожидание для обновления интерфейса
-        sleep(1)  # Замените на WebDriverWait для более надежного ожидания
+        sleep(1)  # При использовании WebDriverWait - тест падает
 
         after_ingredient_counter = burger_builder_page.get_ingredient_counter_value(ingredient_id)
 
@@ -51,8 +50,7 @@ class TestBurgerBuilderPage:
         burger_builder_page.move_ingredient_to_basket(ingredient_id)
         burger_builder_page.press_order_button()
 
-        # Добавляем ожидание для успешного оформления заказа
-        sleep(1)  # Замените на WebDriverWait для более надежного ожидания
+        sleep(1)  # # При использовании WebDriverWait - тест падает
 
         assert burger_builder_page.verify_success_screen_with_order_number()
 

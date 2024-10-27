@@ -5,11 +5,10 @@ from pages.reset_password_page import ResetPasswordPage
 from conftest import *
 import allure
 
-
-class TestForgotPasswordPage:
+class TestForgotPasswordPage:  # Страница Восстановления пароля
 
     @allure.title('Проверка перехода на страницу Восстановления пароля по кнопке "Восстановить пароль"')
-    def test_go_to_password_recovery_page_by_clicking_recover_password_button(self, driver):
+    def test_navigate_to_forgot_password_page(self, driver):
         login_page = LoginPage(driver)
         forgot_password_page = ForgotPasswordPage(driver)
 
@@ -23,7 +22,7 @@ class TestForgotPasswordPage:
         assert forgot_password_page.verify_password_recovery_page()
 
     @allure.title('Проверка ввода почты и работа кнопки "Восстановить" на странице Восстановления пароля')
-    def test_recovery_button_functionality(self, driver):
+    def test_email_submission_for_password_recovery(self, driver):
         forgot_password_page = ForgotPasswordPage(driver)
         reset_password_page = ResetPasswordPage(driver)
 
@@ -36,4 +35,5 @@ class TestForgotPasswordPage:
 
         # Проверяем, что страница сброса пароля открыта
         assert reset_password_page.verify_password_reset_page()
+
 
