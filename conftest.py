@@ -8,13 +8,9 @@ from webdriver_manager.firefox import GeckoDriverManager
 from helpers import register_and_authenticate_user, delete_user_account
 
 
-@pytest.fixture(params=["chrome", "firefox"])
-def driver(request):
-    """Фикстура для создания экземпляра веб-драйвера.
+@pytest.fixture(params=["chrome", "firefox"]) # Параметризована для использования браузеров Chrome и Firefox
+def driver(request): # Фикстура для создания экземпляра веб-драйвера
 
-    Параметризована для использования браузеров Chrome и Firefox.
-    После завершения теста драйвер закрывается.
-    """
     browser_name = request.param
     browser = None
     try:
@@ -35,25 +31,15 @@ def driver(request):
             browser.quit()
 
 
-@pytest.fixture
+@pytest.fixture # Фикстура для генерации случайных учетных данных пользователя
 def generate_user_credentials():
-    """Фикстура для генерации случайных учетных данных пользователя.
 
-    Возвращает кортеж, содержащий случайную электронную почту,
-    пароль и имя.
-    """
     return create_random_email(), create_random_password(), create_random_name()
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function') # Фикстура для регистрации и аутентификации нового пользователя.
 def login_new_user(driver):
-    """Фикстура для регистрации и аутентификации нового пользователя.
 
-    Использует функцию register_and_authenticate_user для получения
-    токенов доступа и обновления, затем устанавливает их в локальное
-    хранилище браузера. Удаляет учетную запись пользователя после
-    завершения теста.
-    """
     tokens = register_and_authenticate_user()
 
     # Проверка, что токены не равны None
