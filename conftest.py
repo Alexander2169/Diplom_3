@@ -55,6 +55,11 @@ def login_new_user(driver):
     завершения теста.
     """
     tokens = register_and_authenticate_user()
+
+    # Проверка, что токены не равны None
+    if tokens is None:
+        raise Exception("Не удалось зарегистрировать пользователя и получить токены.")
+
     driver.get(Urls.BASE_URL)
     token_script = (f'localStorage.setItem("accessToken", "{tokens["accessToken"]}");'
                     f'localStorage.setItem("refreshToken", "{tokens["refreshToken"]}");')

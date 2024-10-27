@@ -16,7 +16,7 @@ class OrderPage(BasePage):
 
     @allure.step('Кликаем на последний заказ в списке')
     def select_last_order(self):
-        self.is_element_invisible(OrderFeedLocators.LOADING_ICON)
+        self.is_element_invisible(OrdersFeedLocators.LOADING_ICON)
         self.click_element(OrdersFeedLocators.MOST_RECENT_ORDER)
 
     @allure.step('Проверяем наличие модального окна с деталями заказа')
@@ -42,6 +42,7 @@ class OrderPage(BasePage):
         else:
             self.print_error(f'Проблема: отображается {OrdersFeedLocators.ACTIVE_ORDER_LIST_ITEMS}')
 
+class OrderHistoryPage(BasePage):
     @allure.step('Проверяем открытие страницы истории заказов')
     def verify_order_history_page(self):
         return self.verify_page_opened(Urls.USER_ORDER_HISTORY_URL, UserProfileLocators.ORDER_HISTORY_PAGE_LINK)
