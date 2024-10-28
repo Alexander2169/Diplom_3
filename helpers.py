@@ -3,6 +3,10 @@ import random
 import allure
 from faker import Faker
 from config import *
+import logging
+
+# Настройка логирования
+logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
 @allure.step('Генерация данных пользователя')
 def generate_user_info():
@@ -13,7 +17,6 @@ def generate_user_info():
         'name': fake.name()
     }
     return user_info
-
 
 @allure.step('Регистрация и авторизация нового пользователя через API, возвращение авторизационных данных')
 def register_and_authenticate_user():
@@ -34,18 +37,16 @@ def register_and_authenticate_user():
             }
             return tokens
         else:
-            print('Проблема с авторизацией пользователя')
+            logging.error('Проблема с авторизацией пользователя')
     else:
-        print('Проблема с регистрацией пользовательского аккаунта')
-
+        logging.error('Проблема с регистрацией пользовательского аккаунта')
 
 @allure.step('Удаление учетной записи пользователя через API')
 def delete_user_account(access_token):
     url = f'{Urls.BASE_URL}{Endpoints.USER_ACCOUNT_DELETION}'
     response = requests.delete(url, headers={'Authorization': access_token})
     if not (response.status_code == 202 and response.json()['success'] == True):
-        print('Проблема с удалением пользовательского аккаунта')
-
+        logging.error('Проблема с удалением пользовательского аккаунта')
 
 @allure.step('Определение случайного id ингридиента через API')
 def fetch_random_ingredient_id():
@@ -54,11 +55,9 @@ def fetch_random_ingredient_id():
     ingredient_id = response.json()['data'][random.randint(0, len(response.json()['data']) - 1)]['_id']
     return ingredient_id
 
-
 @allure.step('Определение случайного id булки для заказа')
 def fetch_random_bun_id():
     return random.choice(BunIds.BUN_IDS)
-
 
 @allure.step('Создание заказа через API')
 def place_order(access_token):
@@ -71,4 +70,5 @@ def place_order(access_token):
     if response.status_code == 200:
         return response.json()['order']['number']
     else:
-        print('Проблема с созданием ордера пользователя через api')
+        logging.error('Проблема с созданием ордера пользователя через API')
+
