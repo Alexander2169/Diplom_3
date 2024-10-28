@@ -2,7 +2,10 @@ from base_page import BasePage
 from locators import *
 from config import Urls
 import allure
+import logging
 
+# Настройка логирования
+logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class OrderPage(BasePage):
 
@@ -40,7 +43,7 @@ class OrderPage(BasePage):
         if self.wait_for_text_change(OrdersFeedLocators.ACTIVE_ORDER_LIST_ITEMS, 'Все текущие заказы готовы!'):
             return self.get_text(OrdersFeedLocators.ACTIVE_ORDER_LIST_ITEMS)
         else:
-            self.print_error(f'Проблема: отображается {OrdersFeedLocators.ACTIVE_ORDER_LIST_ITEMS}')
+            logging.error(f'Проблема: отображается {OrdersFeedLocators.ACTIVE_ORDER_LIST_ITEMS}')
 
 class OrderHistoryPage(BasePage):
     @allure.step('Проверяем открытие страницы истории заказов')
