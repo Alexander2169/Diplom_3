@@ -40,8 +40,7 @@ class TestBurgerBuilderPage:  # Страница конструктора бур
         before_ingredient_counter = burger_builder_page.get_ingredient_counter_value(ingredient_id)
         burger_builder_page.move_ingredient_to_basket(ingredient_id)
 
-        WebDriverWait(driver, 10).until(EC.text_to_be_present_in_element(BurgerConstructorLocators.
-                                                                         INGREDIENT_QUANTITY, str(int(before_ingredient_counter) + 1)))
+        WebDriverWait(driver, 10).until(EC.text_to_be_present_in_element(BurgerConstructorLocators.INGREDIENT_QUANTITY, str(int(before_ingredient_counter) + 1)))
         after_ingredient_counter = burger_builder_page.get_ingredient_counter_value(ingredient_id)
 
         assert int(after_ingredient_counter) > int(before_ingredient_counter)
