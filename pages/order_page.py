@@ -1,11 +1,9 @@
 from base_page import BasePage
 from locators import *
-from config import Urls
+from config import *
 import allure
 import logging
 
-# Настройка логирования
-logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class OrderPage(BasePage):
 

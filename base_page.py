@@ -1,12 +1,9 @@
-import logging
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common import TimeoutException, NoSuchElementException
+from config import *
 import allure
-
-# Настройка логирования
-logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class BasePage:  # Базовый класс для работы со страницами в браузере
 

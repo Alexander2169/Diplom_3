@@ -3,10 +3,6 @@ import random
 import allure
 from faker import Faker
 from config import *
-import logging
-
-# Настройка логирования
-logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
 @allure.step('Генерация данных пользователя')
 def generate_user_info():

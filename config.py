@@ -1,3 +1,5 @@
+import logging
+
 class Urls:
     # Основной URL сайта
     BASE_URL = 'https://stellarburgers.nomoreparties.site'
@@ -55,6 +57,10 @@ class Endpoints:
     # Эндпоинт для создания заказа
     ORDER_CREATION = '/api/orders'
 
-class BunIds:
 
+class BunIds:
     BUN_IDS = ['61c0c5a71d1f82001bdaaa70', '61c0c5a71d1f82001bdaaa77']
+
+# Настройка логирования
+logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
+
