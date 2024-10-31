@@ -15,7 +15,7 @@ class BasePage:  # Базовый класс для работы со стран
 
     def get_visible_element(self, locator):  # Находит видимый элемент на странице по локатору
         try:
-            return WebDriverWait(self.driver, 5).until(
+            return WebDriverWait(self.driver, 3).until(
                 expected_conditions.visibility_of_element_located(locator))
         except (TimeoutException, NoSuchElementException):
             self.log_error(f'Элемент {locator} не найден в окне браузера')

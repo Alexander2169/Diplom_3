@@ -50,6 +50,7 @@ class TestBurgerBuilderPage:  # Страница конструктора бур
         burger_builder_page.move_ingredient_to_basket(ingredient_id)
         burger_builder_page.press_order_button()
 
+        burger_builder_page.wait_for_success_order_screen()
         assert burger_builder_page.verify_success_screen_with_order_number(), "Order was not successfully created."
 
 
