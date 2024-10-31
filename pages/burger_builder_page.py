@@ -2,9 +2,10 @@ from base_page import BasePage
 from locators import *
 from config import *
 import allure
+import logging
 
 
-class BurgerBuilderPage(BasePage): # Страница конструктора
+class BurgerBuilderPage(BasePage):  # Страница конструктора
 
     @allure.step('Переход на страницу конструктора')
     def navigate_to_constructor(self):
@@ -48,6 +49,9 @@ class BurgerBuilderPage(BasePage): # Страница конструктора
         self.scroll_to(ingredient_locator)
         self.drag_and_drop(ingredient_locator, BurgerConstructorLocators.BASKET_SECTION)
 
+        # Логируем состояние после добавления
+        logging.info(f'Ингредиент {random_ingredient_id} добавлен в корзину.')
+
     @allure.step('Получение значения счётчика для добавленного ингредиента')
     def get_ingredient_counter_value(self, random_ingredient_id):
         ingredient_counter = self.get_random_ingredient_locator(random_ingredient_id,
@@ -70,15 +74,24 @@ class BurgerBuilderPage(BasePage): # Страница конструктора
         order_id_element = self.driver.find_element(*BurgerConstructorLocators.SUCCESS_ORDER_ID)
         return order_id_element.text
 
-    @allure.step('Проверка отображения успешного окна с номером заказа')
-    def verify_success_screen_with_order_number(self):
-        try:
-            order_id_element = self.driver.find_element(*BurgerConstructorLocators.SUCCESS_ORDER_ID)
-            success_order_id = order_id_element.text
-            assert success_order_id is not None and success_order_id != "", "ID заказа не найден"
-            return True  # Возвращаем True, если ID заказа найден
-        except NoSuchElementException:
-            return False  # Возвращаем False, если элемент не найден
+    @allure.step('Ожидание открытия модального окна с информацией об ингредиенте')
+    def wait_for_ingredient_detail_modal_to_open(self):
+        self.get_visible_element(BurgerConstructorLocators.INGREDIENT_INFO_HEADER)
+
+    @allure.step('Ожидание закрытия модального окна с информацией об ингредиенте')
+    def wait_for_ingredient_detail_modal_to_close(self):
+        self.is_element_invisible(BurgerConstructorLocators.INGREDIENT_INFO_HEADER)
+
+    @allure.step('Ожидание увеличения счетчика ингредиента')
+    def wait_for_ingredient_counter_to_increase(self, ingredient_id, old_count):
+        new_count = str(int(old_count) + 1)
+        self.wait_for_text_change(BurgerConstructorLocators.INGREDIENT_QUANTITY, str(old_count))
+
+    @allure.step('Ожидание успешного окна с номером заказа')
+    def wait_for_success_order_screen(self):
+        self.get_visible_element(BurgerConstructorLocators.SUCCESS_ORDER_ID)
+
+
 
 
 

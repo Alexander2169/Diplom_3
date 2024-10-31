@@ -1,9 +1,9 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.action_chains import ActionChains  # Импортируем ActionChains
 from selenium.common import TimeoutException, NoSuchElementException
-from config import *
 import allure
+import logging
 
 class BasePage:  # Базовый класс для работы со страницами в браузере
 
@@ -100,3 +100,4 @@ class BasePage:  # Базовый класс для работы со стран
     def compare_results(actual, expected):  # Сравнивает фактический результат с ожидаемым
         with allure.step(f'Сравниваем фактически полученный результат [{actual}] с ожидаемым [{expected}]'):
             return actual == expected
+
